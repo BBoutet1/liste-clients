@@ -17,7 +17,7 @@ import ch.qos.logback.core.net.server.Client;
 @RequestMapping("/api")
 public class ListeClientsController {
    @Autowired
-	private clientService cliensservice;
+	private ClientService cliensservice;
 	
 	@GetMapping("/clients")
 	public List<Client> get() {
