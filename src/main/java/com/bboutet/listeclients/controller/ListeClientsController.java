@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ch.qos.logback.core.net.server.Client;
 
 //Controller
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class ListeClientsController {

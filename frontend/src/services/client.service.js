@@ -20,14 +20,6 @@ class ClientDataService {
     delete(id) {
         return http.delete(`/clients/${id}`);
     }
-
-    deleteAll() {
-        return http.delete(`/clients`);
-    }
-
-    findByTitle(title) {
-        return http.get(`/clients?title=${title}`);
-    }
 }
 
 export default new ClientDataService();
