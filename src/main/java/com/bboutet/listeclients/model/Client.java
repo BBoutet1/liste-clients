@@ -15,17 +15,17 @@ public class Client {
 	private Integer id;
 
 	@Column
-	private String lastName;
+	private String lastname;
 
 	@Column
-	private String firstName;
+	private String firstname;
 
 	@Column
-	private Integer phone;
+	private Double phone;
 
 	@Override
 	public String toString() {
-		return "Client [ID=	" + id + ", NOM=" + lastName + ", PRENOM=" + firstName + ", TELEPHONE=" + phone +
+		return "Client [ID=	" + id + ", NOM=" + lastname + ", PRENOM=" + firstname + ", TELEPHONE=" + phone +
 				 "]";
 	}
 
@@ -38,26 +38,26 @@ public class Client {
 	}
 
     public String getLastName() {
-        return lastName;
+        return lastname;
     }
     
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
     
     public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 
-	public void getFirstName(String firstName) {
-		this.firstName = firstName;
+	public void getFirstName(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public Integer getPhone() {
+	public Double getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(Double phone) {
 		this.phone = phone;
 	}
 }
