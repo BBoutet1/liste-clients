@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button"
 import "./index.css";
 
 //Component for the employees table
@@ -6,7 +7,7 @@ function ClientsTable(props) {
     
     return (
         <main>
-            <div className="m-3">
+            <div className="search-wrapper m-3">
                 <form className="search d-inline-block input-group m-3">
                     <div className="input-group">
                         <input
@@ -33,6 +34,7 @@ function ClientsTable(props) {
                         <option value="phone">TELEPHONE</option>
                     </select>
                 </div>
+                <Button/>
             </div>
             <div className="m-3">
                 <table className="table mx-auto  mb-0  border">
@@ -44,7 +46,7 @@ function ClientsTable(props) {
                             <th><strong>TELEPHONE</strong><i className="fa fa-sort-down ml-2" id="phone" onClick={props.handleSortChange}></i></th> 
                       </tr>
                     </thead>
-                    <tbody>{props.children}</tbody> 
+                    <tbody>{props.children}</tbody>
                 </table>
             </div>
         </main>);

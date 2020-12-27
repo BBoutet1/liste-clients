@@ -69,7 +69,9 @@ state = {
           handleFilterChange={this.handleFilterChange}
           handleSortChange={this.handleSortChange}
         >
-      {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1).filter(client => client[this.state.filter].toString().toLowerCase().includes(this.state.search.toString().toLowerCase())).map(client => (
+          {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1)
+            .filter(client => client[this.state.filter].toString().toLowerCase()
+              .includes(this.state.search.toString().toLowerCase())).map(client => (
             <ClientRow 
             key={client.id}
             id={client.id}
