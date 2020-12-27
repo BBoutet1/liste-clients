@@ -40,7 +40,7 @@ function ClientsTable(props) {
                         <tr>
                             <th><strong> ID</strong><i className="fa fa-sort-down ml-3" id="id" onClick={props.handleSortChange}></i></th>
                             <th> <strong>NOM</strong><i className="fa fa-sort-down ml-2" id="lastName" onClick={props.handleSortChange}></i></th>
-                            <th><strong>PRENOM</strong><i className="fa fa-sort-down ml-2" id="fistName" onClick={props.handleSortChange}></i></th>
+                            <th><strong>PRENOM</strong><i className="fa fa-sort-down ml-2" id="firstName" onClick={props.handleSortChange}></i></th>
                             <th><strong>TELEPHONE</strong><i className="fa fa-sort-down ml-2" id="phone" onClick={props.handleSortChange}></i></th> 
                       </tr>
                     </thead>

@@ -1,22 +1,20 @@
-.search,
-.filter {
-    width: 300px;
-    margin-right: calc((100% - 600px)/3)!important;
-    margin-left: calc((100% - 600px)/3)!important;
-}
-
 .search {
-    width: 300px;
+    width: 200px;
     margin-right: 0px!important;
 }
 
+.filter {
+    width: fit-content;
+    float: right;
+}
+
 .custom-select {
-    width: 200px!important;
+    width: 110px!important;
     vertical-align: inherit;
 }
 
 label {
-    width: 100px;
+    width: 125px;
 }
 
 .fa-sort-down:hover {

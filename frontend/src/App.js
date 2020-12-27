@@ -25,12 +25,9 @@ state = {
         this.setState({
           clients: res.data    
         });
-          console.log(res.data) 
       })
     .catch(err => console.log(err));
   }
-
-
 
   //This function handle the search filter type change
   handleFilterChange = event => {
@@ -71,7 +68,7 @@ state = {
           handleFilterChange={this.handleFilterChange}
           handleSortChange={this.handleSortChange}
         >
-      {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1).filter(client => client[this.state.filter].includes(this.state.search)).map(client => (
+      {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1).filter(client => client[this.state.filter].toLowerCase().includes(this.state.search.toLowerCase())).map(client => (
             <ClientRow 
             key={client.id}
             id={client.id}
