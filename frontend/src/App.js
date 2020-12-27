@@ -48,7 +48,7 @@ state = {
   render() {
     return (
       <Wrapper>
-      <Title>Employee directory</Title>
+      <Title>Liste de Clients</Title>
         <ClientsTable
           handleInputChange={this.handleInputChange}
           handleFilterChange={this.handleFilterChange}
