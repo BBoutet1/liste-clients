@@ -33,6 +33,7 @@ state = {
   handleFilterChange = event => {
     let value = event.target.value;
     // Updating the input's state
+    console.log(value)
     this.setState({
       filter: value // filter 
     });
@@ -68,7 +69,7 @@ state = {
           handleFilterChange={this.handleFilterChange}
           handleSortChange={this.handleSortChange}
         >
-      {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1).filter(client => client[this.state.filter].toLowerCase().includes(this.state.search.toLowerCase())).map(client => (
+      {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1).filter(client => client[this.state.filter].toString().toLowerCase().includes(this.state.search.toString().toLowerCase())).map(client => (
             <ClientRow 
             key={client.id}
             id={client.id}
