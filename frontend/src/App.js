@@ -2,19 +2,35 @@ import React, { Component } from "react";
 import Wrapper from "./components/Wrapper";
 import ClientsTable from "./components/ClientsTable";
 import ClientRow from "./components/ClientRow";
-import clients from "./clients.json";
+// import clients from "./clients.json";
+import API from "./services/client.service"
 import Title from "./components/Title";
 
 
+
 class App extends Component {
-  
+ 
 // Setting the component's initial state
 state = {
-    clients,
+    clients:{},
     filter:"lastName", // Search filter match initialized to the firstName property(column)
     search: "", //search input
     sortBy:"id" // table initially sorted by client id
   };
+
+
+  componentDidMount = () => {
+    API.getAll()
+      .then(res => {
+        this.setState({
+          clients: res.data    
+        });
+          console.log(res.data) 
+      })
+    .catch(err => console.log(err));
+  }
+
+
 
   //This function handle the search filter type change
   handleFilterChange = event => {
@@ -49,12 +65,13 @@ state = {
     return (
       <Wrapper>
       <Title>Liste de Clients</Title>
-        <ClientsTable
+      {this.state.clients.length &&  <ClientsTable
+          onLoad = {this.loadClients}
           handleInputChange={this.handleInputChange}
           handleFilterChange={this.handleFilterChange}
           handleSortChange={this.handleSortChange}
         >
-            {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1).filter(client => client[this.state.filter].includes(this.state.search)).map(client => (
+      {this.state.clients.sort((a, b) => (a[this.state.sortBy] > b[this.state.sortBy]) ? 1 : -1).filter(client => client[this.state.filter].includes(this.state.search)).map(client => (
             <ClientRow 
             key={client.id}
             id={client.id}
@@ -63,7 +80,7 @@ state = {
             phone={client.phone}
           />
         ))}
-        </ClientsTable>
+        </ClientsTable>}
       </Wrapper>
     ); 
   }

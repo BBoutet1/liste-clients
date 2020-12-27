@@ -14,13 +14,13 @@ function ClientsTable(props) {
                             name="search"
                             onChange={props.handleInputChange}
                             id="search"
-                            type="text" className="form-control" placeholder="Search"
+                            type="text" className="form-control" placeholder="Recherche"
                         />
                     </div>
                 </form>
                 <div className="filter d-inline-block input-group m-3">
                     <div className="d-inline-block input-group-prepend">
-                        <label className="input-group-text">Filtrer par...</label>
+                        <label className="input-group-text">Recherche par...</label>
                     </div>
                     <select
                         value={props.filter}
