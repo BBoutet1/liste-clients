@@ -5,9 +5,9 @@ function ClientRow(props) {
     return (
         <tr>
             <td>{props.id}</td>
-            <td>{props.lastName}</td>
-            <td>{props.firstName}</td>
-            <td pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}">{props.phone}</td>
+            <td>{props.lastname}</td>
+            <td>{props.firstname}</td>
+            <td>{props.phone}</td>
         </tr>
   );
 }

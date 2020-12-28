@@ -37,19 +37,19 @@ public class Client {
 		this.id = id;
 	}
 
-    public String getLastName() {
+    public String getLastname() {
         return lastname;
     }
     
-    public void setLastName(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
     
-    public String getFirstName() {
+    public String getFirstname() {
 		return firstname;
 	}
 
-	public void getFirstName(String firstname) {
+	public void getFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 

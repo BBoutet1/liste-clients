@@ -13,7 +13,7 @@ class App extends Component {
 /* Setting the component's initial state */
 state = {
     clients:{},
-    filter:"lastName", // Search filter match initialized to the firstName property(column)
+    filter:"lastname", // Search filter match initialized to the firstName property(column)
     search: "", //search input
     sortBy: "id", // table initially sorted by client id
     saved: true // last client saved
@@ -67,6 +67,7 @@ state = {
   }
   
   render() {
+    console.log(this.state.clients)
     return (
       <Wrapper>
       <Title>Liste de Clients</Title>
@@ -84,8 +85,8 @@ state = {
             <ClientRow 
             key={client.id}
             id={client.id}
-            lastName={client.lastName}
-            firstName={client.firstName}
+            lastname={client.lastname}
+            firstname={client.firstname}
             phone={client.phone}
           />
         ))}
