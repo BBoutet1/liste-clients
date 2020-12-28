@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Button() {
+export default function Button(props) {
     return (
-        <button className="btn btn-success m-3"> Ajouter un client</button>
+        <button className={props.classes}>{props.text}</button>
     )
 
 }
