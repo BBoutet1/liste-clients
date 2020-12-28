@@ -32,7 +32,7 @@ export default function Form(){
     return (
         
 <form onSubmit={handleSubmit}>
-  <div class="form-row mb-2 mt-1 mb-0">
+  <div class="form-row mt-1 mb-0">
     <div class="col mt-1">
         <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Nom"
             onChange={handleInputChange}
@@ -47,9 +47,9 @@ export default function Form(){
         <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone"
             onChange={handleInputChange}
         />
-    </div>            
-   </div>
-   <button type="submit" class="btn btn-primary pr-2 pl-2  mt-1 mr-1">Sauvergarder</button>           
+          </div>  
+    <button type="submit" class="btn btn-primary pr-2 pl-2  mt-1 mr-1">Sauvergarder</button>      
+   </div>         
 </form>)
 
 }

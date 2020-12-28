@@ -43,7 +43,7 @@ function ClientsTable(props) {
             </div>
             <div className="m-3">
                 <Form/>
-                <table className="table mx-auto  mb-0  border">
+                <table className="table mx-auto  mt-3  border">
                     <thead  className="thead-light">
                         <tr>
                             <th><strong> ID</strong><i className="fa fa-sort-down ml-3" id="id" onClick={props.handleSortChange}></i></th>
