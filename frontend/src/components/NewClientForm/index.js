@@ -2,17 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./index.css"
 import API from "../../services/client.service"
 
-export default function Form(){
+export default function NewClientForm(){
   // Setting our component's initial state
     const [client, setClient] = useState({});
 
     
-
-  // Load all books and store them with setBooks
-//   useEffect(() => {
-//     loadUserData();
-//   }, []);
-
     const handleInputChange = event => { 
         event.preventDefault();
        const { name, value } = event.target;
@@ -23,17 +17,12 @@ export default function Form(){
       event.preventDefault(client);
       console.log(client)
       API.create(client)
-      // .then(res => {
-      //   this.setState({
-      //     saved: true    
-      //   });
-      // })
     .catch(err => console.log(err));
   }
     return (
         
 <form onSubmit={handleSubmit}>
-  <div class="form-row mt-1 mb-0">
+  <div class="form-row mt-1 mb-0 mr-3 ml-3">
     <div class="col mt-1">
         <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Nom"
             onChange={handleInputChange}

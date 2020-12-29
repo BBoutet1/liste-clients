@@ -31,6 +31,7 @@ Cette application web sert à gérer une liste de clients. A l'ouverture, la pag
 - React
 - HTML
 - CSS
+- Bootstrap
 ...
 ```
 

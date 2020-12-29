@@ -10,7 +10,6 @@ class ClientDataService {
     }
 
     async create(data) {
-        console.log(null)
         return http.post("/clients", data);
     }
 
