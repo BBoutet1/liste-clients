@@ -11,7 +11,6 @@ class App extends Component {
       <Wrapper>
           <Title/>
           <ClientSearchForm />
-          <NewClientForm/>
           <ClientsTable/>
       </Wrapper>
     ); 

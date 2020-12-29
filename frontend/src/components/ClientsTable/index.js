@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ClientRow from "../ClientRow";
 import API from "../../services/client.service"
+import NewClientForm from "../NewClientForm"
 import "./index.css";
 
 //Component for the clients table
@@ -13,8 +14,8 @@ export default class ClientsTable extends Component {
         sortBy: "id", // table initially sorted by client id
     }; 
 
-/* Retrieving all the clients after the component mounted*/
-  componentDidMount = () => {
+/* Retrieving all the clients*/
+  loadClients = () => {
     API.getAll()
       .then(res => {
         this.setState({
@@ -22,6 +23,11 @@ export default class ClientsTable extends Component {
         });
       })
     .catch(err => console.log(err));
+  }
+
+/* Retrieving all the clients after the component mounted*/
+  componentDidMount = () => {
+        this.loadClients()
   }
 
       /* This function handle the sort culumn change */
@@ -37,6 +43,9 @@ export default class ClientsTable extends Component {
     render() {
         return (
         <div className="m-3">
+                <NewClientForm
+                    loadClients={this.loadClients}
+                />  
             <table className="table mx-auto  mt-3  border">
                 <thead  className="thead-light">
                     <tr>

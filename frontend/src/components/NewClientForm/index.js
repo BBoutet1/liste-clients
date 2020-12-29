@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./index.css"
 import API from "../../services/client.service"
 
-export default function NewClientForm(){
+export default function NewClientForm(props){
   // Setting our component's initial state
     const [client, setClient] = useState({});
 
@@ -21,29 +21,28 @@ export default function NewClientForm(){
         if (client.phone === undefined ) {
            API.create(client)
              .catch(err => console.log(err));
-            alert("Client enregistré")
+            alert("Client enregistré!")
         }
         else if (client.phone !== undefined) {
             if (!isNaN(client.phone) && client.phone.length == 10) {
                  API.create(client)
                    .catch(err => console.log(err));
-                  alert("Client enregistré")
+                  alert("Client enregistré!")
             }
             else {
-              alert("Entrez un numéro de téléphone à 10 chiffres")
+              alert("Entrez un numéro de téléphone à 10 chiffres!")
           }
         }
+        props.loadClients();
       } else {
         alert("Entrez un nom pour enregistrer")
       }
 
-
-     
   }
     return (
         
 <form onSubmit={handleSubmit}>
-  <div class="form-row mt-1 mb-0 mr-3 ml-3">
+  <div class="form-row mt-1 mb-0">
     <div class="col mt-1">
         <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Nom"
             onChange={handleInputChange}
@@ -59,7 +58,7 @@ export default function NewClientForm(){
             onChange={handleInputChange}
         />
           </div>  
-    <button type="submit" class="btn btn-primary pr-2 pl-2  mt-1 mr-1">Sauvergarder</button>      
+    <button type="submit"  class="btn btn-primary pr-2 pl-2  mt-1 mr-1">Sauvergarder</button>      
    </div>         
 </form>)
 
