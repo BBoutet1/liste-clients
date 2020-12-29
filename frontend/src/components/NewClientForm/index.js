@@ -54,7 +54,7 @@ export default function NewClientForm(props){
         />
     </div>
      <div class="col mt-1">
-        <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone"
+        <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone" defaultValue="(999) 999-9999"
             onChange={handleInputChange}
         />
           </div>  

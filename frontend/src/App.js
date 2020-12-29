@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Wrapper from "./components/Wrapper";
-import ClientSearchForm from "./components/ClientSearchForm"
-import NewClientForm from "./components/NewClientForm"
 import ClientsTable from "./components/ClientsTable";
 import Title from "./components/Title";
 
@@ -10,7 +8,6 @@ class App extends Component {
     return (
       <Wrapper>
           <Title/>
-          <ClientSearchForm />
           <ClientsTable/>
       </Wrapper>
     ); 
