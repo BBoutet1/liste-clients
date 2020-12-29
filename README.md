@@ -1,6 +1,6 @@
 # liste-clients
 
-This app is an employee directory build with `React`. The application's UI is broken down into `components` with a component `state` to respond to user events, searching or sorting employees by name, role or department.
+Cette application web sert à gérer une liste de clients. A l'ouverture, la page affiche la liste des clients si il en existe. L'interface utilisateur permet de chercher de un client spécifique mais également de de choisir l'ordre d'affichage du tableau.
 
 ## Table of contents
 
