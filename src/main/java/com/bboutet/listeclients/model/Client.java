@@ -1,10 +1,5 @@
 package com.bboutet.listeclients.model;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clients")
@@ -23,10 +18,14 @@ public class Client {
 	@Column
 	private Double phone;
 
-	@Override
-	public String toString() {
-		return "Client [ID=	" + id + ", NOM=" + lastname + ", PRENOM=" + firstname + ", TELEPHONE=" + phone +
-				 "]";
+	public Client() {
+
+	}
+
+	public Client(String lastname, String firstname, Double phone) {
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.phone = phone;
 	}
 
 	public Integer getId() {
@@ -59,5 +58,11 @@ public class Client {
 
 	public void setPhone(Double phone) {
 		this.phone = phone;
+	}
+
+	@Override
+	public String toString() {
+		return "Client [ID=	" + id + ", NOM=" + lastname + ", PRENOM=" + firstname + ", TELEPHONE=" + phone +
+				 "]";
 	}
 }

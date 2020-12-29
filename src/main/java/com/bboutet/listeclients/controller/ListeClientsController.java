@@ -11,7 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,16 +58,16 @@ public class ListeClientsController {
 	// 	}
 	// }
 
-	// @PostMapping("/clients")
-	// public ResponseEntity<Client> createClient(@RequestBody Client client) {
-	// 	try {
-	// 		Client _client = clientRepository
-	// 				.save(new Client(client.getTitle(), client.getDescription(), false));
-	// 		return new ResponseEntity<>(_client, HttpStatus.CREATED);
-	// 	} catch (Exception e) {
-	// 		return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-	// 	}
-	// }
+	@PostMapping("/clients")
+	public ResponseEntity<Client> createClient(@RequestBody Client client) {
+		try {
+			Client _client = clientRepository
+					.save(new Client(client.getLastname(), client.getFirstname(), client.getPhone()));
+			return new ResponseEntity<>(_client, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	// @PutMapping("/clients/{id}")
 	// public ResponseEntity<Client> updateClient(@PathVariable("id") long id, @RequestBody Client client) {

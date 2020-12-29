@@ -9,7 +9,8 @@ class ClientDataService {
         return http.get(`/clients/${id}`);
     }
 
-    create(data) {
+    async create(data) {
+        console.log(null)
         return http.post("/clients", data);
     }
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css"
+import API from "../../services/client.service"
 
 export default function Form(){
   // Setting our component's initial state
@@ -15,19 +16,19 @@ export default function Form(){
     const handleInputChange = event => { 
         event.preventDefault();
        const { name, value } = event.target;
-       if (event.target.value){setClient({...client, [name]: value})}
-        console.log(client)
+       if (event.target.value){setClient({...client, "id": null , [name]: value})}
     }
  
     const handleSubmit = event => {
-     
-//   API.create()
-//       .then(res => {
-//         this.setState({
-//           saved: true    
-//         });
-//       })
-//     .catch(err => console.log(err));
+      event.preventDefault(client);
+      console.log(client)
+      API.create(client)
+      // .then(res => {
+      //   this.setState({
+      //     saved: true    
+      //   });
+      // })
+    .catch(err => console.log(err));
   }
     return (
         
