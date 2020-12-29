@@ -1,4 +1,4 @@
-# liste-clients
+# LISTE DE CLIENTS
 
 Cette application web sert à gérer une liste de clients. A l'ouverture, la page affiche la liste des clients si il en existe. L'interface utilisateur permet de chercher de un client spécifique mais également de de choisir l'ordre d'affichage du tableau.
 
