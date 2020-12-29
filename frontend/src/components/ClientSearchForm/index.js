@@ -4,7 +4,7 @@ import ClientAddButton from "../Button"
 
 export  default function ClientSearchForm(props) {
   return (
-        <div className="search-wrapper row">
+        <div className="search-wrapper row mr-2 ml-2">
           <div className="d-flex mr-2">
             <div className="filter input-group mt-1">
                 <label className="input-group-text">Recherche par...</label>
