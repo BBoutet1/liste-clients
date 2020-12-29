@@ -38,9 +38,15 @@ export default class ClientsTable extends Component {
 /* Retrieving all the clients*/
   loadClients = () => {
     API.getAll()
-      .then(res => {
+        .then(res => {
+            //Replacing null values by empty string to allow the use of toLoweCase and toString without errors
+            let data = JSON.parse(JSON.stringify(res.data,
+                function (key, value) {
+                    return (value == null) ? "" : value
+                })); 
+            console.log(data)
         this.setState({
-          clients: res.data    
+          clients: data    
         });
       })
     .catch(err => console.log(err));
