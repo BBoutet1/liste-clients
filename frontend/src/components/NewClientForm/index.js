@@ -16,8 +16,29 @@ export default function NewClientForm(){
     const handleSubmit = event => {
       event.preventDefault(client);
       console.log(client)
-      API.create(client)
-    .catch(err => console.log(err));
+
+      if (client.lastname !== undefined) {
+        if (client.phone === undefined ) {
+           API.create(client)
+             .catch(err => console.log(err));
+            alert("Client enregistré")
+        }
+        else if (client.phone !== undefined) {
+            if (!isNaN(client.phone) && client.phone.length == 10) {
+                 API.create(client)
+                   .catch(err => console.log(err));
+                  alert("Client enregistré")
+            }
+            else {
+              alert("Entrez un numéro de téléphone à 10 chiffres")
+          }
+        }
+      } else {
+        alert("Entrez un nom pour enregistrer")
+      }
+
+
+     
   }
     return (
         
