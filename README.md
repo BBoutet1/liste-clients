@@ -69,7 +69,7 @@ mvn spring-but:run
 
 ## Contribution
 
-N'hésitez pas à faire une pull request.
+N'hésitez pas à faire d'extraction (pull request).
 
 ## Questions et remarques
 
