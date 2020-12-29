@@ -37,7 +37,7 @@ Cette application web sert à gérer une liste de clients. A l'ouverture, la pag
 
 Pour commencer vous devez intaller Java, Maven et Spring-boot ainsi que le code source sur votre ordinateur.
 
-Executer les commandes suivante pour insaller l'application:
+Executer les commandes suivante pour insaller lancer l'application sur votre ordinateur:
 
 1. Création de la base de données `clientsdb` et de la table `clients`
 
