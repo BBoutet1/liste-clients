@@ -14,7 +14,7 @@ export default function NewClientForm(props){
     }
  
     const handleSubmit = event => {
-      event.preventDefault(client);
+      event.preventDefault();
        if (client.lastname !== undefined) {
         if (client.phone === undefined ) {
            API.create(client)

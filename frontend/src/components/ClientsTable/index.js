@@ -13,7 +13,7 @@ export default function ClientsTable() {
   const [filter, setFilter] = useState("lastname"); // column to filter (search)
   const [search, setSearch] = useState(""); // search input 
   const [sortBy, setSortBy] = useState("id"); // sorted colum
-   const [showForm, setShowForm] = useState(false); // new client form
+  const [showForm, setShowForm] = useState(false); // new client form
   
   /* Retrieving all the clients after the component mounted*/
   useEffect(() => {
@@ -22,6 +22,7 @@ export default function ClientsTable() {
   
  /*  This function handle the filter change (search by id, name, ...)*/
   const handleFilterChange = event => {
+    event.preventDefault();
     let value = event.target.value;
     // Updating the input's state
     setFilter(value)
@@ -29,6 +30,7 @@ export default function ClientsTable() {
 
   /* This function handle the search input change */
   const handleInputChange = event => {
+    event.preventDefault();
     // Getting the value of the search input which triggered the change
     let value = event.target.value;
     // Updating the input's state
@@ -82,7 +84,7 @@ export default function ClientsTable() {
                         <th><strong>TELEPHONE</strong><i className="fa fa-sort-down ml-2" id="phone" onClick={handleSortChange}/></th> 
                         <th/>
                         <th/>
-                    </tr>
+                     </tr>
                 </thead>
                 {clients.length && <tbody>
                     {clients.sort((a, b) => (a[sortBy] > b[sortBy]) ? 1 : -1)
@@ -94,6 +96,7 @@ export default function ClientsTable() {
                         lastname={client.lastname}
                         firstname={client.firstname}
                         phone={client.phone}
+                        loadClients={loadClients}
                     />
                     ))}
                 </tbody>}
