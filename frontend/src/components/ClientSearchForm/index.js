@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import API from "../../services/client.service"
+import React from "react";
 import ClientAddButton from "../Button"
 
 export  default function ClientSearchForm(props) {
   return (
-        <div className="search-wrapper row mr-2 ml-2">
+        <div className="search-wrapper row mr-1 ml-1">
           <div className="d-flex mr-2">
             <div className="filter input-group mt-1">
                 <label className="input-group-text">Recherche par...</label>

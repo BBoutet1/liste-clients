@@ -44,10 +44,10 @@ Executer les commandes suivante pour insaller lancer l'application sur votre ord
 1. Création de la base de données `clientsdb` et de la table `clients`
 
 ```sh
-CREATE DATABASE clients;
-CREATE TABLE users (
+CREATE DATABASE clientsdb;
+CREATE TABLE clients (
   id SERIAL,
-  lastname VARCHAR(30),
+  lastname VARCHAR(30) NOT NULL,
   firstname VARCHAR(30),
   phone VARCHAR(11)
 );  
