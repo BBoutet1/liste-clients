@@ -65,9 +65,8 @@ export default function ClientsTable() {
     setShowForm(true) 
   }
         return (
-        <div className="m-3">
+        <div className="container m-auto">
             {!showForm && <ClientSearchForm
-                filter={filter}
                 search={search}  
                 handleFilterChange={handleFilterChange}
                 handleInputChange={handleInputChange}

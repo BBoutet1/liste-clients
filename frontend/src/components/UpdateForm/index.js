@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function UnpdateForm(props) {
+export default function UnpdateForm(props) {  
 
     return (
         <>
-            <td>{props.id}</td>
+            <td className="card-body">{props.id}</td>
             <td>
                <form className="search input-group mt-1 mr-2 d-inline">
                     <div className="input-group">

@@ -18,8 +18,14 @@ function ClientRow(props) {
      // Update a client from the database with a given id, then reloads books from the db
     function updateClient(event) {
         event.preventDefault();
-        let selector = event.target.id
-        ReactDOM.render( <UpdateForm/> , document.getElementById(selector));
+        let ID = event.target.id
+      ReactDOM.render(
+        <UpdateForm
+              id={ID}
+              lastname={props.lastname}
+              firstname={props.firstname}
+              phone ={props.phone}
+        />, document.getElementById(ID));
         
         // API.update(props.id)
         // .then(() => props.loadClients())
