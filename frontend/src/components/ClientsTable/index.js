@@ -32,9 +32,7 @@ export default function ClientsTable() {
     let value = event.target.value;
     // Updating the input's state
     setSearch(value)
-    this.setState({
-      search: value
-    });
+    console.log(search, value)
    };
 
 /* Retrieving all the clients*/
@@ -67,9 +65,7 @@ export default function ClientsTable() {
                 handleFilterChange={handleFilterChange}
                 handleInputChange = {handleInputChange}  
             />
-            <NewClientForm
-                    loadClients={loadClients}
-            />  
+            <NewClientForm/>  
             <table className="table mx-auto  mt-3  border">
                 <thead  className="thead-light">
                     <tr>
