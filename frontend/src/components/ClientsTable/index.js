@@ -55,9 +55,8 @@ export default function ClientsTable() {
   const handleSortChange = event => {
     // Getting the name (id) of the sorted column
        let ID = event.target.id;
-       console.log(ID)
     // Updating the input's state
-     setSortBy(sortBy)
+     setSortBy(ID)
    };
 
         return (
