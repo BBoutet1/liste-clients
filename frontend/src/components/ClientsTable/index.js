@@ -28,6 +28,7 @@ export default function ClientsTable() {
     setFilter(value)
   }
 
+
   /* This function handle the search input change */
   const handleInputChange = event => {
     event.preventDefault();
