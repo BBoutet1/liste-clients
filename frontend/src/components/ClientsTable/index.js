@@ -13,6 +13,7 @@ export default function ClientsTable() {
   const [filter, setFilter] = useState("lastname"); // column to filter (search)
   const [search, setSearch] = useState(""); // search input 
   const [sortBy, setSortBy] = useState("id"); // sorted colum
+   const [showForm, setShowForm] = useState(false); // new client form
   
   /* Retrieving all the clients after the component mounted*/
   useEffect(() => {
@@ -32,7 +33,6 @@ export default function ClientsTable() {
     let value = event.target.value;
     // Updating the input's state
     setSearch(value)
-    console.log(search, value)
    };
 
 /* Retrieving all the clients*/
@@ -45,6 +45,7 @@ export default function ClientsTable() {
                     return (value == null) ? "" : value
               })); 
           setClients(data)
+          setShowForm(false) 
       })
     .catch(err => console.log(err));
   }
@@ -57,15 +58,21 @@ export default function ClientsTable() {
      setSortBy(ID)
    };
 
+  const handleShowForm = () => {
+    setShowForm(true) 
+  }
         return (
         <div className="m-3">
-            <ClientSearchForm
+            {!showForm && <ClientSearchForm
                 filter={filter}
                 search={search}  
                 handleFilterChange={handleFilterChange}
-                handleInputChange = {handleInputChange}  
-            />
-            <NewClientForm/>  
+                handleInputChange={handleInputChange}
+                handleShowForm={handleShowForm}
+            />}
+            {showForm && <NewClientForm
+                loadClients={loadClients}
+            />} 
             <table className="table mx-auto  mt-3  border">
                 <thead  className="thead-light">
                     <tr>

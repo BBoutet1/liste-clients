@@ -1,5 +1,4 @@
 import React from "react";
-import ClientAddButton from "../Button"
 
 export  default function ClientSearchForm(props) {
   return (
@@ -30,10 +29,12 @@ export  default function ClientSearchForm(props) {
                 </div>
             </form>  
         </div>
-        <ClientAddButton
-            text="Ajouter un client"
-            classes = "btn btn-success mt-1 float-right"
-        />
+          <button
+              onClick={props.handleShowForm}
+              className="btn btn-success mt-1 float-right"
+          >
+              Ajouter un client
+         </button>
       </div>
     )}
    

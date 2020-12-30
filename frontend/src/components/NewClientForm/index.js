@@ -15,9 +15,7 @@ export default function NewClientForm(props){
  
     const handleSubmit = event => {
       event.preventDefault(client);
-      console.log(client)
-
-      if (client.lastname !== undefined) {
+       if (client.lastname !== undefined) {
         if (client.phone === undefined ) {
            API.create(client)
              .catch(err => console.log(err));
@@ -33,11 +31,10 @@ export default function NewClientForm(props){
               alert("Entrez un numéro de téléphone à 10 chiffres!")
           }
         }
-        props.loadClients();
       } else {
         alert("Entrez un nom pour enregistrer")
       }
-
+     props.loadClients()
   }
     return (
         
@@ -58,7 +55,7 @@ export default function NewClientForm(props){
             onChange={handleInputChange}
         />
           </div>  
-    <button type="submit"  class="btn btn-primary pr-2 pl-2  mt-1 mr-1">Sauvergarder</button>      
+    <button type="submit" class="btn btn-primary pr-2 pl-2  mt-1 mr-1">Sauvergarder</button>      
    </div>         
 </form>)
 
