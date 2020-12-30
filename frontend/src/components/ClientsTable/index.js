@@ -76,10 +76,12 @@ export default function ClientsTable() {
             <table className="table mx-auto  mt-3  border">
                 <thead  className="thead-light">
                     <tr>
-                        <th><strong> ID</strong><i className="fa fa-sort-down ml-3" id="id" onClick={handleSortChange}></i></th>
-                        <th> <strong>NOM</strong><i className="fa fa-sort-down ml-2" id="lastname" onClick={handleSortChange}></i></th>
-                        <th><strong>PRENOM</strong><i className="fa fa-sort-down ml-2" id="firstname" onClick={handleSortChange}></i></th>
-                        <th><strong>TELEPHONE</strong><i className="fa fa-sort-down ml-2" id="phone" onClick={handleSortChange}></i></th> 
+                        <th><strong> ID</strong><i className="fa fa-sort-down ml-3" id="id" onClick={handleSortChange}/></th>
+                        <th> <strong>NOM</strong><i className="fa fa-sort-down ml-2" id="lastname" onClick={handleSortChange}/></th>
+                        <th><strong>PRENOM</strong><i className="fa fa-sort-down ml-2" id="firstname" onClick={handleSortChange}/></th>
+                        <th><strong>TELEPHONE</strong><i className="fa fa-sort-down ml-2" id="phone" onClick={handleSortChange}/></th> 
+                        <th/>
+                        <th/>
                     </tr>
                 </thead>
                 {clients.length && <tbody>

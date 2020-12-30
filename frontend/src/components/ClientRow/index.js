@@ -8,6 +8,8 @@ function ClientRow(props) {
             <td>{props.lastname}</td>
             <td>{props.firstname}</td>
             <td>{props.phone}</td>
+            <td><i className="fa fa-edit" id={props.id}/></td>
+            <td><i className="fa fa-remove" id={props.id}/></td>
         </tr>
   );
 }
