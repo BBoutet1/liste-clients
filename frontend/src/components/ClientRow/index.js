@@ -20,7 +20,7 @@ function ClientRow(props) {
             <td>{props.lastname}</td>
             <td>{props.firstname}</td>
             <td>{props.phone}</td>
-            <td><i onClick={props.openUpdateForm} className="fa fa-edit" id={props.id}/></td>
+            <td><i onClick={()=> props.openUpdateForm (props.id)} className="fa fa-edit" id={props.id}/></td>
             <td><i onClick={deleteClient} className="fa fa-trash" id={props.id}/></td>
         </tr>
   );

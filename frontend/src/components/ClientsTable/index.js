@@ -16,7 +16,6 @@ export default function ClientsTable() {
   const [search, setSearch] = useState(""); // search input 
   const [sortBy, setSortBy] = useState("id"); // sorted colum
   const [showForm, setShowForm] = useState(false); // new client form
-  const [clientToUpdate, setClientToUpdate] = useState({}) // client that need update
   
   /* Retrieving all the clients after the component mounted*/
   useEffect(() => {
@@ -69,17 +68,15 @@ export default function ClientsTable() {
   }
 
      // Update a client from the database with a given id, then reloads books from the db
-    function openUpdateForm(event) {
-        event.preventDefault();
-      let ID = event.target.id
-      setClientToUpdate(clients.filter(client => {return client.id === ID}));
+    function openUpdateForm(id) {
+      let clientUpate = clients.filter(client => client.id === id )
       ReactDOM.render(
         <ClientUpdateForm
-              id={ID}
-              lastname={clientToUpdate.lastname}
-              firstname={clientToUpdate.firstname}
-              phone ={clientToUpdate.phone}
-        />, document.getElementById(ID));
+              id={id}
+              lastname={clientUpate[0].lastname}
+              firstname={clientUpate[0].firstname}
+              phone ={clientUpate[0].phone}
+        />, document.getElementById(id));
 
     }
         return (
