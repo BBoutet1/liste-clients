@@ -16,7 +16,7 @@ function ClientRow(props) {
     }
     
      // Update a client from the database with a given id, then reloads books from the db
-    function updateClient(event) {
+    function openUpdateForm(event) {
         event.preventDefault();
         let ID = event.target.id
       ReactDOM.render(
@@ -26,7 +26,6 @@ function ClientRow(props) {
               firstname={props.firstname}
               phone ={props.phone}
         />, document.getElementById(ID));
-        
         // API.update(props.id)
         // .then(() => props.loadClients())
         // .catch(err => console.log(err));
@@ -37,8 +36,8 @@ function ClientRow(props) {
             <td>{props.lastname}</td>
             <td>{props.firstname}</td>
             <td>{props.phone}</td>
-            <td><i onClick={updateClient} className="fa fa-edit" id={props.id}/></td>
-            <td><i onClick={deleteClient} className="fa fa-close" id={props.id}/></td>
+            <td><i onClick={openUpdateForm} className="fa fa-edit" id={props.id}/></td>
+            <td><i onClick={deleteClient} className="fa fa-trash" id={props.id}/></td>
         </tr>
   );
 }
