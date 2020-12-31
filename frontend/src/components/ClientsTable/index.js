@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import ClientRow from "../ClientRow";
 import API from "../../services/client.service"
 import ClientSearchForm from "../ClientSearchForm"
 import NewClientForm from "../NewClientForm"
+import ClientUpdateForm from "../ClientUpdateForm"
 import "./index.css";
 
 //Component for the clients table
@@ -14,6 +16,7 @@ export default function ClientsTable() {
   const [search, setSearch] = useState(""); // search input 
   const [sortBy, setSortBy] = useState("id"); // sorted colum
   const [showForm, setShowForm] = useState(false); // new client form
+  const [clientToUpdate, setClientToUpdate] = useState({}) // client that need update
   
   /* Retrieving all the clients after the component mounted*/
   useEffect(() => {
@@ -64,6 +67,21 @@ export default function ClientsTable() {
   const handleShowForm = () => {
     setShowForm(true) 
   }
+
+     // Update a client from the database with a given id, then reloads books from the db
+    function openUpdateForm(event) {
+        event.preventDefault();
+      let ID = event.target.id
+      setClientToUpdate(clients.filter(client => {return client.id === ID}));
+      ReactDOM.render(
+        <ClientUpdateForm
+              id={ID}
+              lastname={clientToUpdate.lastname}
+              firstname={clientToUpdate.firstname}
+              phone ={clientToUpdate.phone}
+        />, document.getElementById(ID));
+
+    }
         return (
         <div className="container m-auto">
             {!showForm && <ClientSearchForm
@@ -97,6 +115,7 @@ export default function ClientsTable() {
                         firstname={client.firstname}
                         phone={client.phone}
                         loadClients={loadClients}
+                        openUpdateForm={openUpdateForm}
                     />
                     ))}
                 </tbody>}

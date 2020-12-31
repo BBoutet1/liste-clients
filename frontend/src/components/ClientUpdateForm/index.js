@@ -1,7 +1,6 @@
 import React from "react";
 
-export default function UnpdateForm(props) {  
-
+export default function ClientUpdateForm(props) {  
     return (
         <>
             <td className="card-body">{props.id}</td>
