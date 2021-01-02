@@ -6,7 +6,6 @@ export default function NewClientForm(props){
   // Setting our component's initial state
     const [client, setClient] = useState({});
 
-    
     const handleInputChange = event => { 
         event.preventDefault();
        const { name, value } = event.target;
@@ -18,13 +17,13 @@ export default function NewClientForm(props){
        if (client.lastname !== undefined) {
         if (client.phone === undefined ) {
            API.create(client)
-             .catch(err => console.log(err));
+             .catch(err => console.log(err))
             alert("Client enregistré!")
         }
         else if (client.phone !== undefined) {
             if (!isNaN(client.phone) && client.phone.length == 10) {
                  API.create(client)
-                   .catch(err => console.log(err));
+                  .catch(err => console.log(err))
                   alert("Client enregistré!")
             }
             else {
@@ -33,9 +32,10 @@ export default function NewClientForm(props){
         }
       } else {
         alert("Entrez un nom pour enregistrer")
-      }
-     props.loadClients()
-  }
+       }
+      props.loadClients()
+    }
+  
     return (
         
 <form onSubmit={handleSubmit}>

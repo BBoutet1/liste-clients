@@ -48,16 +48,16 @@ public class ListeClientsController {
 		}
 	}
 
-	// @GetMapping("/clients/{id}")
-	// public ResponseEntity<Client> getClientById(@PathVariable("id") long id) {
-	// 	Optional<Client> clientData = clientRepository.findById(id);
+	@GetMapping("/clients/{id}")
+	public ResponseEntity<Client> getClientById(@PathVariable("id") long id) {
+		Optional<Client> clientData = clientRepository.findById(id);
 
-	// 	if (clientData.isPresent()) {
-	// 		return new ResponseEntity<>(clientData.get(), HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
+		if (clientData.isPresent()) {
+			return new ResponseEntity<>(clientData.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@PostMapping("/clients")
 	public ResponseEntity<Client> createClient(@RequestBody Client client) {

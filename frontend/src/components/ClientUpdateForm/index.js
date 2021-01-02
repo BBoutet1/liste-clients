@@ -15,20 +15,23 @@ export default function ClientUpdateForm(props) {
        const { name, value } = event.target;
        if (event.target.value){setClient({...client, [name]: value})}
     }
-  console.log(client)
+
+
     const handleSubmit = event => {
         event.preventDefault();
         let id = props.id
        if (client.lastname !== undefined) {
         if (client.phone === undefined ) {
            API.update(id,client)
-             .catch(err => console.log(err));
+            .then(() => props.renderUpdate(id))
+            .catch(err => console.log(err))
             alert("Client mis à jour!")
         }
         else if (client.phone !== undefined) {
             if (!isNaN(client.phone) && client.phone.length == 10) {
-                  API.update(id,client)
-                   .catch(err => console.log(err));
+                  API.update(id, client)
+                 .then(() =>  props.renderUpdate(id))
+                 .catch(err => console.log(err))
                    alert("Client mis à jour!")
             }
             else {
@@ -37,8 +40,7 @@ export default function ClientUpdateForm(props) {
         }
       } else {
         alert("Entrez un nom pour enregistrer")
-      }
-     props.loadClients()
+       }
   }
 
     return (
@@ -80,8 +82,8 @@ export default function ClientUpdateForm(props) {
                     </div>
                 </form>
             </td>
-            <td><i onClick={handleSubmit} className="fa fa-save"/></td>
-            <td><i  className="fa fa-close"/></td>
+            <td><i id={props.id} onClick={handleSubmit} className="fa fa-save"/></td>
+            <td><i id={props.id} className="fa fa-close"/></td>
         </>
     )
 }

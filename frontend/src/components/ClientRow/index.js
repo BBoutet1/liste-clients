@@ -1,5 +1,4 @@
 import React from "react";
-import API from "../../services/client.service"
 
 
 //Component for each employee

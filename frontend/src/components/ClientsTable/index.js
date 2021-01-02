@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import ClientRow from "../ClientRow";
+import ClientRow from "../ClientRow"
+import ClientUpdateRow from "../ClientUpdateRow";
 import API from "../../services/client.service"
 import ClientSearchForm from "../ClientSearchForm"
 import NewClientForm from "../NewClientForm"
@@ -51,6 +52,7 @@ export default function ClientsTable() {
               })); 
           setClients(data)
           setShowForm(false) 
+          console.log("clients loaded")
       })
     .catch(err => console.log(err));
   }
@@ -68,7 +70,7 @@ export default function ClientsTable() {
   }
 
      // Update a client from the database with a given id, then reloads books from the db
-    function openUpdateForm(id) {
+    const openUpdateForm = id => {
       let clientUpate = clients.filter(client => client.id === id )
       ReactDOM.render(
         <ClientUpdateForm
@@ -76,13 +78,13 @@ export default function ClientsTable() {
               lastname={clientUpate[0].lastname}
               firstname={clientUpate[0].firstname}
               phone={clientUpate[0].phone}
-              loadClients={loadClients}
+              renderUpdate={renderUpdate}
         />, document.getElementById(id));
 
     }
   
    // Deletes a client from the database with a given id, then reloads books from the db
-    function deleteClient(event) {
+    const deleteClient = event => {
       event.preventDefault();
       let id = event.target.id
        API.delete(id)
@@ -90,7 +92,15 @@ export default function ClientsTable() {
       .catch(err => console.log(err));
     }
     
-
+  const renderUpdate = id => {
+        console.log(id)
+         ReactDOM.render(
+           <ClientUpdateRow
+             id={id}
+             deleteClient={deleteClient}
+             openUpdateForm={openUpdateForm}
+           />, document.getElementById(id));
+    }
         return (
         <div className="container m-auto">
             {!showForm && <ClientSearchForm
