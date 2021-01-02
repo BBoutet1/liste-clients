@@ -52,7 +52,6 @@ export default function ClientsTable() {
               })); 
           setClients(data)
           setShowForm(false) 
-          console.log("clients loaded")
       })
     .catch(err => console.log(err));
   }

@@ -48,12 +48,12 @@ export default function NewClientForm(props){
         />
     </div>
     <div class="col mt-1">
-        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Prénom"
+        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Prénom(option)"
             onChange={handleInputChange}
         />
     </div>
      <div class="col mt-1">
-        <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone"
+            <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone(option)"
             onChange={handleInputChange}
         />
           </div>  
