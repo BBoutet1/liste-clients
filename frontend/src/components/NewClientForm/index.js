@@ -16,13 +16,15 @@ export default function NewClientForm(props){
       event.preventDefault();
        if (client.lastname !== undefined) {
         if (client.phone === undefined ) {
-           API.create(client)
+          API.create(client)
+             .then(()=>props.loadClients())
              .catch(err => console.log(err))
             alert("Client enregistré!")
         }
         else if (client.phone !== undefined) {
             if (!isNaN(client.phone) && client.phone.length == 10) {
-                 API.create(client)
+              API.create(client)
+                  .then(()=>props.loadClients())
                   .catch(err => console.log(err))
                   alert("Client enregistré!")
             }
