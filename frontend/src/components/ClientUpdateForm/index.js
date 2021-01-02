@@ -83,7 +83,7 @@ export default function ClientUpdateForm(props) {
                 </form>
             </td>
             <td><i id={props.id} onClick={handleSubmit} className="fa fa-save"/></td>
-            <td><i id={props.id} className="fa fa-close"/></td>
+            <td><i id={props.id} onClick={(() =>  props.renderUpdate(props.id))} className="fa fa-close"/></td>
         </>
     )
 }
