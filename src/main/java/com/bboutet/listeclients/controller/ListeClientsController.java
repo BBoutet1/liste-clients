@@ -2,6 +2,7 @@ package com.bboutet.listeclients.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.bboutet.listeclients.model.Client;
 import com.bboutet.listeclients.repo.ClientRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,9 +37,6 @@ public class ListeClientsController {
 
 			if (name == null)
 				clientRepository.findAll().forEach(clients::add);
-	
-			// else
-			// 	clientRepository.findByNameContaining(title).forEach(clients::add);
 
 			if (clients.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -71,20 +70,20 @@ public class ListeClientsController {
 		}
 	}
 
-	// @PutMapping("/clients/{id}")
-	// public ResponseEntity<Client> updateClient(@PathVariable("id") long id, @RequestBody Client client) {
-	// 	Optional<Client> clientData = clientRepository.findById(id);
+	@PutMapping("/clients/{id}")
+	public ResponseEntity<Client> updateClient(@PathVariable("id") long id, @RequestBody Client client) {
+		Optional<Client> clientData = clientRepository.findById(id);
 
-	// 	if (clientData.isPresent()) {
-	// 		Client _client = clientData.get();
-	// 		_client.setTitle(client.getTitle());
-	// 		_client.setDescription(client.getDescription());
-	// 		_client.setPublished(client.isPublished());
-	// 		return new ResponseEntity<>(clientRepository.save(_client), HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
+		if (clientData.isPresent()) {
+			Client _client = clientData.get();
+			_client.setLastname(client.getLastname());
+			_client.setFirstname(client.getFirstname());
+			_client.setPhone(client.getPhone());
+			return new ResponseEntity<>(clientRepository.save(_client), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@DeleteMapping("/clients/{id}")
 	public ResponseEntity<HttpStatus> deleteClient(@PathVariable("id") Long id) {

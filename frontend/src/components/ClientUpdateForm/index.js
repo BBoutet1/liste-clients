@@ -1,6 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import API from "../../services/client.service"
 
 export default function ClientUpdateForm(props) {  
+
+    const [client, setClient] = useState({
+        lastname: props.lastname,
+        firstname: props.firstname,
+        phone: props.lastname
+    });
+
+    
+    const handleInputChange = event => { 
+        event.preventDefault();
+       const { name, value } = event.target;
+       if (event.target.value){setClient({...client, [name]: value})}
+    }
+  console.log(client)
+    const handleSubmit = event => {
+        event.preventDefault();
+        let id = props.id
+       if (client.lastname !== undefined) {
+        if (client.phone === undefined ) {
+           API.update(id,client)
+             .catch(err => console.log(err));
+            alert("Client mis à jour!")
+        }
+        else if (client.phone !== undefined) {
+            if (!isNaN(client.phone) && client.phone.length == 10) {
+                  API.update(id,client)
+                   .catch(err => console.log(err));
+                   alert("Client mis à jour!")
+            }
+            else {
+              alert("Entrez un numéro de téléphone à 10 chiffres!")
+          }
+        }
+      } else {
+        alert("Entrez un nom pour enregistrer")
+      }
+     props.loadClients()
+  }
+
     return (
         <>
             <td className="card-body">{props.id}</td>
@@ -8,10 +48,9 @@ export default function ClientUpdateForm(props) {
                <form className="search input-group mt-1 mr-2 d-inline">
                     <div className="input-group">
                         <input
-                            value={props.search}
-                            name="search"
-                            onChange={props.handleInputChange}
-                            id="lastnameU"
+                            name="lastname"
+                            onChange={handleInputChange}
+                            id="lastname"
                             type="text" className="form-control" defaultValue={props.lastname}
                         />
                     </div>
@@ -21,10 +60,9 @@ export default function ClientUpdateForm(props) {
                 <form className="search input-group mt-1 mr-2 d-inline">
                     <div className="input-group">
                         <input
-                            value={props.search}
-                            name="search"
-                            onChange={props.handleInputChange}
-                            id="firstnameU"
+                            name="firstname"
+                            onChange={handleInputChange}
+                            id="firstname"
                             type="text" className="form-control" defaultValue={props.firstname}
                         />
                     </div>
@@ -34,16 +72,15 @@ export default function ClientUpdateForm(props) {
                 <form className="search input-group mt-1 mr-2 d-inline">
                     <div className="input-group">
                         <input
-                            value={props.search}
-                            name="search"
-                            onChange={props.handleInputChange}
-                            id="phoneU"
+                            name="phone"
+                            onChange={handleInputChange}
+                            id="phone"
                             type="text" className="form-control" defaultValue={props.phone}
                         />
                     </div>
                 </form>
             </td>
-            <td><i className="fa fa-save"/></td>
+            <td><i onClick={handleSubmit} className="fa fa-save"/></td>
             <td><i  className="fa fa-close"/></td>
         </>
     )

@@ -75,10 +75,22 @@ export default function ClientsTable() {
               id={id}
               lastname={clientUpate[0].lastname}
               firstname={clientUpate[0].firstname}
-              phone ={clientUpate[0].phone}
+              phone={clientUpate[0].phone}
+              loadClients={loadClients}
         />, document.getElementById(id));
 
     }
+  
+   // Deletes a client from the database with a given id, then reloads books from the db
+    function deleteClient(event) {
+      event.preventDefault();
+      let id = event.target.id
+       API.delete(id)
+      .then(() => loadClients())
+      .catch(err => console.log(err));
+    }
+    
+
         return (
         <div className="container m-auto">
             {!showForm && <ClientSearchForm
@@ -113,6 +125,7 @@ export default function ClientsTable() {
                         phone={client.phone}
                         loadClients={loadClients}
                         openUpdateForm={openUpdateForm}
+                        deleteClient={deleteClient}
                     />
                     ))}
                 </tbody>}

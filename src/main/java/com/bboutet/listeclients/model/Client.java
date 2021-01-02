@@ -16,13 +16,13 @@ public class Client {
 	private String firstname;
 
 	@Column
-	private Double phone;
+	private String phone;
 
 	public Client() {
 
 	}
 
-	public Client(String lastname, String firstname, Double phone) {
+	public Client(String lastname, String firstname, String phone) {
 		this.lastname = lastname;
 		this.firstname = firstname;
 		this.phone = phone;
@@ -48,15 +48,15 @@ public class Client {
 		return firstname;
 	}
 
-	public void getFirstname(String firstname) {
+	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 
-	public Double getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Double phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
