@@ -14,9 +14,9 @@
 	<name>liste-clients</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties>
+<!-- 	<properties>
 		<java.version>15</java.version>
-	</properties>
+	</properties> -->
 
 	<dependencies>
 		<dependency>
