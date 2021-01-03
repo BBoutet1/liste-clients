@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import "./index.css"
-import API from "../../services/client.service"
+import API from "../../api"
 
 export default function NewClientForm(props){
   // Setting our component's initial state

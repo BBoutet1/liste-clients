@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ClientRow from "../ClientRow"
 import ClientUpdateRow from "../ClientUpdateRow";
-import API from "../../services/client.service"
+import API from "../../api"
 import ClientSearchForm from "../ClientSearchForm"
 import NewClientForm from "../NewClientForm"
 import ClientUpdateForm from "../ClientUpdateForm"

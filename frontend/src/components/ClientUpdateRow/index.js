@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import API from "../../services/client.service"
+import API from "../../api"
 
 export default function ClientUpdateRow(props) { 
     const [client, setClient] = useState({});

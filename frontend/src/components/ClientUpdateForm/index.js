@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../../services/client.service"
+import API from "../../api"
 
 export default function ClientUpdateForm(props) {  
 
