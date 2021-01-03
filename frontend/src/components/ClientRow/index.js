@@ -1,7 +1,7 @@
 import React from "react";
 
 
-//Component for each employee
+//Component (table row) for each employee
 function ClientRow(props) {
   
     return (

@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import API from "../../api"
 
+// Client update form component
 export default function ClientUpdateForm(props) {  
-
+     // Setting our component's initial state
     const [client, setClient] = useState({
         lastname: props.lastname,
         firstname: props.firstname,
         phone: props.lastname
     });
 
-    
+    /*  This function handle client update inputs change (search by id, name, ...)*/
     const handleInputChange = event => { 
         event.preventDefault();
        const { name, value } = event.target;
        if (event.target.value){setClient({...client, [name]: value})}
     }
 
-
+    /* This function handle the client update form submission */
     const handleSubmit = event => {
         event.preventDefault();
         let id = props.id

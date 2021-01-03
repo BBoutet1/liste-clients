@@ -6,7 +6,6 @@ import API from "../../api"
 import ClientSearchForm from "../ClientSearchForm"
 import NewClientForm from "../NewClientForm"
 import ClientUpdateForm from "../ClientUpdateForm"
-import "./index.css";
 
 //Component for the clients table
 export default function ClientsTable() {
@@ -23,7 +22,7 @@ export default function ClientsTable() {
         loadClients()
   }, [])
   
- /*  This function handle the filter change (search by id, name, ...)*/
+ /*  This function handle the filter slection change (search by id, name, ...)*/
   const handleFilterChange = event => {
     event.preventDefault();
     let value = event.target.value;
@@ -51,13 +50,14 @@ export default function ClientsTable() {
                     return (value == null) ? "" : value
               })); 
           setClients(data)
+          //New client form hidden when client table loaded
           setShowForm(false) 
           console.log("clients loaded")
       })
     .catch(err => console.log(err));
   }
 
-      /* This function handle the sort culumn change */
+  /* This function handle the sort culumn change */
   const handleSortChange = event => {
     // Getting the name (id) of the sorted column
        let ID = event.target.id;
@@ -65,11 +65,12 @@ export default function ClientsTable() {
      setSortBy(ID)
    };
 
+  /* New client form hidded when table is loaded */
   const handleShowForm = () => {
     setShowForm(true) 
   }
 
-     // Update a client from the database with a given id, then reloads books from the db
+     /* This function open a form to add a new client */
     const openUpdateForm = id => {
       let clientUpate = clients.filter(client => client.id === id )
       ReactDOM.render(
@@ -83,7 +84,7 @@ export default function ClientsTable() {
 
     }
   
-   // Deletes a client from the database with a given id, then reloads books from the db
+   /* Deletes a client from the database with a given id */
     const deleteClient = event => {
       event.preventDefault();
       let id = event.target.id
@@ -91,7 +92,8 @@ export default function ClientsTable() {
       .then(() => loadClients())
       .catch(err => console.log(err));
     }
-    
+  
+  /* This function render an updated client table's row */
   const renderUpdate = id => {
         console.log(id)
          ReactDOM.render(
@@ -123,22 +125,24 @@ export default function ClientsTable() {
                         <th/>
                      </tr>
                 </thead>
-                {clients.length && <tbody>
-                    {clients.sort((a, b) => (a[sortBy] > b[sortBy]) ? 1 : -1)
+              <tbody> {clients.length > 0
+                ? (clients.sort((a, b) => (a[sortBy] > b[sortBy]) ? 1 : -1)
                     .filter(client => client[filter].toString().toLowerCase()
-                    .includes(search.toString().toLowerCase())).map(client => (
-                    <ClientRow 
-                        key={client.id}
-                        id={client.id}
-                        lastname={client.lastname}
-                        firstname={client.firstname}
-                        phone={client.phone}
-                        loadClients={loadClients}
-                        openUpdateForm={openUpdateForm}
-                        deleteClient={deleteClient}
-                    />
-                    ))}
-                </tbody>}
+                      .includes(search.toString().toLowerCase())).map(client => (
+                        <ClientRow
+                          key={client.id}
+                          id={client.id}
+                          lastname={client.lastname}
+                          firstname={client.firstname}
+                          phone={client.phone}
+                          loadClients={loadClients}
+                          openUpdateForm={openUpdateForm}
+                          deleteClient={deleteClient}
+                        />
+                      ))
+                )
+                : ( <tr><td className="no-client" colSpan="5"> Pas de client dans la liste. Ajouter un client! </td></tr>)}
+              </tbody>
         </table>
     </div>);
     }

@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from "react";
 import API from "../../api"
 
+// Client update form component
 export default function ClientUpdateRow(props) { 
     const [client, setClient] = useState({});
 
     useEffect(() => {
         getClient(props.id)
     })
-
+    /* This function retrieves the client by id*/ 
      const getClient = id => {
       API.get(id)
           .then(res => {

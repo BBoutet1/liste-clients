@@ -1,17 +1,19 @@
 import React, { useState} from "react";
-import "./index.css"
 import API from "../../api"
 
+//New client form compoent
 export default function NewClientForm(props){
   // Setting our component's initial state
     const [client, setClient] = useState({});
 
+  /* This function handle the new client update form */
     const handleInputChange = event => { 
         event.preventDefault();
        const { name, value } = event.target;
        if (event.target.value){setClient({...client, "id": null , [name]: value})}
     }
  
+  /* This function handle the new client form submission */
     const handleSubmit = event => {
       event.preventDefault();
        if (client.lastname !== undefined) {

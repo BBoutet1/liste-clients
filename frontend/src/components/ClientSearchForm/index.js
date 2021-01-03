@@ -1,5 +1,6 @@
 import React from "react";
 
+/* Client search form */
 export  default function ClientSearchForm(props) {
   return (
         <div className="search-wrapper row mr-1 ml-1">

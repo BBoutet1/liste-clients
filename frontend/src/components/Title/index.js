@@ -1,6 +1,5 @@
 import React from "react";
-import "./index.css";
-
+/* Page header and titel */
 function Title() {
     return <h1 className = "navbar bg-info justify-content-center border-bottom text-center" > Liste de Clients </h1>;
 }
