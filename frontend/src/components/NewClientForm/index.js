@@ -16,15 +16,21 @@ export default function NewClientForm(props){
       event.preventDefault();
        if (client.lastname !== undefined) {
         if (client.phone === undefined ) {
-           API.create(client)
+          API.create(client)
+            .then(() => {
+                  alert("Client enregistré!")
+                  props.loadClients()
+                })
              .catch(err => console.log(err))
-            alert("Client enregistré!")
         }
         else if (client.phone !== undefined) {
             if (!isNaN(client.phone) && client.phone.length == 10) {
-                 API.create(client)
-                  .catch(err => console.log(err))
+              API.create(client)
+                .then(() => {
                   alert("Client enregistré!")
+                  props.loadClients()
+                })
+                  .catch(err => console.log(err))
             }
             else {
               alert("Entrez un numéro de téléphone à 10 chiffres!")
@@ -46,12 +52,12 @@ export default function NewClientForm(props){
         />
     </div>
     <div class="col mt-1">
-        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Prénom"
+        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Prénom(option)"
             onChange={handleInputChange}
         />
     </div>
      <div class="col mt-1">
-        <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone"
+        <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone(option)"
             onChange={handleInputChange}
         />
           </div>  
