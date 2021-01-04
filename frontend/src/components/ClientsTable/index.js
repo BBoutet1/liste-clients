@@ -80,6 +80,8 @@ export default function ClientsTable() {
               firstname={clientUpate[0].firstname}
               phone={clientUpate[0].phone}
               renderUpdate={renderUpdate}
+              deleteClient={deleteClient}
+              openUpdateForm={openUpdateForm}
         />, document.getElementById(id));
 
     }
@@ -95,7 +97,6 @@ export default function ClientsTable() {
   
   /* This function render an updated client table's row */
   const renderUpdate = id => {
-        console.log(id)
          ReactDOM.render(
            <ClientUpdateRow
              id={id}

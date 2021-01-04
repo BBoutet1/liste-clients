@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import API from "../../api"
+import ClientUpdateRow from "../ClientUpdateRow"
 
 // Client update form component
 export default function ClientUpdateForm(props) {  
@@ -7,7 +9,7 @@ export default function ClientUpdateForm(props) {
     const [client, setClient] = useState({
         lastname: props.lastname,
         firstname: props.firstname,
-        phone: props.lastname
+        phone: props.phone
     });
 
     /*  This function handle client update inputs change (search by id, name, ...)*/
@@ -19,9 +21,11 @@ export default function ClientUpdateForm(props) {
 
     /* This function handle the client update form submission */
     const handleSubmit = event => {
-        event.preventDefault();
         let id = props.id
-       if (client.lastname !== undefined) {
+        console.log(props.lastname)
+        console.log(client.lastname)
+        console.log(typeof(client.lastname))
+       if (client.lastname !== undefined || client.lastname.length>1) {
         if (client.phone === undefined ) {
            API.update(id,client)
             .then(() => props.renderUpdate(id))
@@ -29,18 +33,30 @@ export default function ClientUpdateForm(props) {
             alert("Client mis à jour!")
         }
         else if (client.phone !== undefined) {
-            if (!isNaN(client.phone) && client.phone.length == 10) {
+            if (!isNaN(client.phone) && client.phone.length == 10 || client.phone.length==0) {
                   API.update(id, client)
                  .then(() =>  props.renderUpdate(id))
                  .catch(err => console.log(err))
                    alert("Client mis à jour!")
             }
             else {
-              alert("Entrez un numéro de téléphone à 10 chiffres!")
-          }
+                alert("Entrez un numéro de téléphone à 10 chiffres!")
+                 ReactDOM.render(
+                    <ClientUpdateRow
+                        id={id}
+                        deleteClient={props.deleteClient}
+                        openUpdateForm={props.openUpdateForm}
+                    />, document.getElementById(id));
+                    }
         }
       } else {
-        alert("Entrez un nom pour enregistrer")
+           alert("Entrez un nom (2 caractères au moins) pour enregistrer")
+             ReactDOM.render(
+                    <ClientUpdateRow
+                        id={id}
+                        deleteClient={props.deleteClient}
+                        openUpdateForm={props.openUpdateForm}
+                    />, document.getElementById(id));
        }
   }
 
