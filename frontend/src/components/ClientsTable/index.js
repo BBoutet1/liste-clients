@@ -141,7 +141,7 @@ export default function ClientsTable() {
                         />
                       ))
                 )
-                : ( <tr><td className="no-client" colSpan="5"> Pas de client dans la liste. Ajouter un client! </td></tr>)}
+                : ( <tr><td className="no-client" colSpan="6"> Pas de client dans la liste. Ajoutez un client! </td></tr>)}
               </tbody>
         </table>
     </div>);
