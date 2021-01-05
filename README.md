@@ -11,6 +11,7 @@ Cette application web sert à gérer une liste de clients. A l'ouverture, la pag
 * [Technologies](#technologies)
 * [Installation](#installation)
 * [Usage](#usage)
+* [Démonstration](#démonstration)
 * [Licence](#licence)
 * [Contributing](#contributing)
 * [Questions](#questions)
@@ -58,12 +59,31 @@ CREATE TABLE clients (
 mvn spring-but:run    
 ```
 
-## Usage
+## Comment utiliser l'application
 
-* Lorsque la page est chargée, est affichée la liste de clients avec: noms, prénoms et numéro de téléphone.
-* Lorsque l'utilisateur saisit une entrée de `recherche`, seuls les clients dont le `nom` correspond à la recherche sont affichés.
-* L'utilisateur peut changer le type de filtre de recherche pour chercher les clients par de `prénom` `préléphone`.
+* Lorsque la page est chargée, la liste de clients  est affichée si elle existe, sinon un message invitant à ajouter un client apparait.
+
+* Lorsque l'utilisateur appuie le bouton `Ajouter un client`, un formulaire s'affiche pour permettre d'entrer nom, prénom et numéro de téléphone d'un nouveau client.
+
+* Lorsque l'utilisateur appuie sur le bouton `Enregistrer`, la nouvelle entrée est enregistrée dans le tableau de la liste de clients sur condition que le champ réservé au nom ne soit pas vide et que le numéro de téléphone soit un nombre à 10 chiffres.
+
+* Lorsque l'utilisateur appuie sur l'une des icône `poubelle` le client de la ligne concernée est éffacé de la liste.
+
+* Lorsque le client appuie sur l'une des icônes `editer` un formulaire de saisie s'ouvre pour modifier les informations du client.
+ -- Si l'utilisateur appuie sur l'icône `enregister`, les modifications sont enregistrées  sur condition que le champ réservé au nom ne soit pas vide et que le numéro de téléphone soit un nombre à 10 chiffres.
+ -- Si l'utilisateur appuie sur l'icône `fermer`, le formulaire de modification se referme.
+ 
+* Lorsque l'utilisateur saisit une entrée de `recherche`, seuls les clients dont le `nom` correspond à la recherche sont affichés. 
+-- L'utilisateur peut changer le filtre de recherche pour chercher les clients par `prénom` ou `téléphone`.
+
 * L'utilisateur peut ordonner le tableau par `id`, `nom`, `prénom` ou `numéro` de `téléphone`.
+
+## Démonstration
+
+L'image `.gif` ci-dessous permet de faire une démo rapide de l'application.
+
+![alt text](./frontend/src/img/demo.gif "Project 3 Screen Shot Link-N-Park")
+
 
 ## Licence
 
