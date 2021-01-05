@@ -60,12 +60,16 @@
             color: hotpink;
         }
         
-        td .fa {
-            font-size: 30px;
-        }
-        
         .fa-trash {
             color: red
+        }
+        
+        .fa-trash,
+        .fa-save,
+        .fa-edit,
+        .fa-close {
+            font-size: 30px;
+            cursor: pointer
         }
         /* No clients rows message */
         

@@ -60,7 +60,8 @@ export default function NewClientForm(props){
     </div>
      <div class="col mt-1">
         <input type="tel" id="phone" name="phone" class="form-control mr-2" placeholder="Téléphone(option)"
-            onChange={handleInputChange}
+              onChange={handleInputChange}
+              maxLength="10"
         />
           </div>  
     <button type="submit" class="btn btn-primary pr-2 pl-2  mt-1 mr-1">Sauvergarder</button>      

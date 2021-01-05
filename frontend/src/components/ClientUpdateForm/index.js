@@ -23,7 +23,7 @@ export default function ClientUpdateForm(props) {
     const handleSubmit = event => {
         event.preventDefault()
         let id = props.id
-        
+
         if (client.lastname.length && client.lastname.length > 0) {
             if (client.phone === "" || !isNaN(client.phone) && client.phone.length === 10) {
             API.update(id,client)
@@ -87,6 +87,7 @@ export default function ClientUpdateForm(props) {
                             onChange={handleInputChange}
                             id="phone"
                             type="text" className="form-control" defaultValue={props.phone}
+                            maxLength="10"
                         />
                     </div>
                 </form>
