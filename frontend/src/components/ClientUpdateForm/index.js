@@ -16,29 +16,21 @@ export default function ClientUpdateForm(props) {
     const handleInputChange = event => { 
         event.preventDefault();
        const { name, value } = event.target;
-       if (event.target.value){setClient({...client, [name]: value})}
+        setClient({...client, [name]: value})
     }
 
     /* This function handle the client update form submission */
     const handleSubmit = event => {
+        event.preventDefault()
         let id = props.id
-        console.log(props.lastname)
-        console.log(client.lastname)
-        console.log(typeof(client.lastname))
-       if (client.lastname !== undefined || client.lastname.length>1) {
-        if (client.phone === undefined ) {
-           API.update(id,client)
-            .then(() => props.renderUpdate(id))
-            .catch(err => console.log(err))
-            alert("Client mis à jour!")
-        }
-        else if (client.phone !== undefined) {
-            if (!isNaN(client.phone) && client.phone.length == 10 || client.phone.length==0) {
-                  API.update(id, client)
-                 .then(() =>  props.renderUpdate(id))
-                 .catch(err => console.log(err))
-                   alert("Client mis à jour!")
-            }
+        
+        if (client.lastname.length && client.lastname.length > 0) {
+            if (client.phone === "" || !isNaN(client.phone) && client.phone.length === 10) {
+            API.update(id,client)
+                .then(() => props.renderUpdate(id))
+                .catch(err => console.log(err))
+                alert("Client mis à jour!")
+                }
             else {
                 alert("Entrez un numéro de téléphone à 10 chiffres!")
                  ReactDOM.render(
@@ -48,7 +40,7 @@ export default function ClientUpdateForm(props) {
                         openUpdateForm={props.openUpdateForm}
                     />, document.getElementById(id));
                     }
-        }
+        
       } else {
            alert("Entrez un nom (2 caractères au moins) pour enregistrer")
              ReactDOM.render(
