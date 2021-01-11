@@ -121,9 +121,7 @@ export default function ClientsTable() {
                         <th><strong> ID</strong><i className="fa fa-sort-down ml-3" id="id" onClick={handleSortChange}/></th>
                         <th> <strong>NOM</strong><i className="fa fa-sort-down ml-2" id="lastname" onClick={handleSortChange}/></th>
                         <th><strong>PRENOM</strong><i className="fa fa-sort-down ml-2" id="firstname" onClick={handleSortChange}/></th>
-                        <th><strong>TELEPHONE</strong><i className="fa fa-sort-down ml-2" id="phone" onClick={handleSortChange}/></th> 
-                        <th/>
-                        <th/>
+                        <th colSpan="3"><strong>TELEPHONE</strong><i className="fa fa-sort-down ml-2" id="phone" onClick={handleSortChange}/></th> 
                      </tr>
                 </thead>
               <tbody> {clients.length > 0
