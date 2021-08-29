@@ -56,7 +56,7 @@ CREATE TABLE clients (
 
 2. Lancement de l'application
 ```sh
-mvn spring-but:run    
+mvn spring-boot:run    
 ```
 
 ## Comment utiliser l'application
