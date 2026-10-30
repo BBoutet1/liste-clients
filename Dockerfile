@@ -1,4 +1,4 @@
-FROM node:24.22.1-bookworm-slim AS frontend
+FROM node:26.12.0-bookworm-slim AS frontend
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm ci --no-fund --no-audit
