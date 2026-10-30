@@ -1,5 +1,10 @@
 package com.bboutet.listeclients.model;
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "clients")
@@ -9,13 +14,13 @@ public class Client {
 	@Column
 	private Long id;
 
-	@Column
+	@Column(nullable = false, length = 30)
 	private String lastname;
 
-	@Column
+	@Column(length = 30)
 	private String firstname;
 
-	@Column
+	@Column(length = 10)
 	private String phone;
 
 	public Client() {

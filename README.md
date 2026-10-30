@@ -1,104 +1,136 @@
-# LISTE DE CLIENTS
+# Liste de clients
 
-Cette application web sert à gérer une liste de clients. A l'ouverture, la page affiche la liste des clients s'il en existe. L'interface utilisateur permet de créér une nouvelle entrée, de la modifier ou la supprimer,  chercher un client spécifique mais également de choisir l'ordre d'affichage du tableau (par nom ou prénom).
+Application full stack personnelle créée en 2020–2021 avec **Java, Spring Boot, JPA et React**. Elle permet d’ajouter, de rechercher, de trier, de modifier et de supprimer des clients.
 
-## Table of contents
-
-<!-- ⛔️ MD-MAGIC-EXAMPLE:START (TOC:collapse=true&collapseText=Click to expand) -->
-<details>
-<summary>Click to expand table of contents</summary>
-
-* [Technologies](#technologies)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Démonstration](#démonstration)
-* [Licence](#licence)
-* [Contributing](#contributing)
-* [Questions](#questions)
-* [Author information](#author-information)
-
-</details>
-<!-- ⛔️ MD-MAGIC-EXAMPLE:END -->
+La maintenance de 2026 actualise les dépendances, la validation, les tests et le déploiement tout en conservant le périmètre du projet initial.
 
 ## Technologies
 
-```
-- Java
-- Spring-boot
-- PostgreSQL
-- Maven
-- Hibernate
-- Javascript
-- React
-- HTML
-- CSS
-- Bootstrap
-...
-```
+- Java 17, Spring Boot 4.1.2, Spring MVC, Spring Data JPA / Hibernate, Jakarta Validation.
+- React 19, Vite 8, Bootstrap 5 ; appels REST avec `fetch`.
+- H2 en mémoire pour la démonstration ; PostgreSQL pour un environnement persistant.
+- Maven Wrapper 3.9.16, Node.js 24, JUnit / MockMvc, Vitest / Testing Library, Docker, GitHub Actions.
 
-## Installation
+## Démarrage rapide
 
-Pour commencer vous devez intaller Java, Maven et Spring-boot ainsi que le code source sur votre ordinateur.
-
-Executer les commandes suivante pour insaller et lancer l'application sur votre ordinateur:
-
-1. Création de la base de données `clientsdb` et de la table `clients`
+Prérequis : **JDK 17**. Le wrapper Maven et le plugin frontend téléchargent les outils nécessaires au premier lancement. Une connexion Internet est donc requise.
 
 ```sh
-CREATE DATABASE clientsdb;
-CREATE TABLE clients (
-  id SERIAL,
-  lastname VARCHAR(30) NOT NULL,
-  firstname VARCHAR(30),
-  phone VARCHAR(11)
-);  
+./mvnw clean verify
+java -jar target/liste-clients.jar
 ```
 
-2. Lancement de l'application
+Sous Windows, utiliser `mvnw.cmd` à la place de `./mvnw`.
+
+Ouvrir **http://localhost:8080**. Le JAR contient l’API et l’interface ; aucun serveur frontend distinct n’est nécessaire.
+
+Par défaut, le profil `demo` utilise une base H2 en mémoire et trois entrées fictives. Les changements sont partagés entre les visiteurs d’une même instance et **disparaissent au redémarrage**. Utiliser uniquement des données fictives.
+
+## Développement
+
+Pour faire évoluer l’interface avec rechargement automatique, ouvrir deux terminaux :
+
 ```sh
-mvn spring-boot:run    
+# API sur le port 8080
+./mvnw -P'!frontend' spring-boot:run
 ```
 
-## Comment utiliser l'application
+```sh
+# Interface — suivre l’adresse affichée par Vite
+cd frontend
+npm ci
+npm start
+```
 
-* Lorsque la page est chargée, la liste de clients  est affichée si elle existe, sinon un message invitant à ajouter un client apparait.
+Le proxy Vite transmet `/api` au serveur Java. En déploiement, Spring Boot sert les deux parties sur le même domaine.
 
-* Lorsque l'utilisateur appuie le bouton `Ajouter un client`, un formulaire s'affiche pour permettre d'entrer nom, prénom et numéro de téléphone d'un nouveau client.
+## Tests
 
-* Lorsque l'utilisateur appuie sur le bouton `Enregistrer`, la nouvelle entrée est enregistrée dans le tableau de la liste de clients sur condition que le champ réservé au nom ne soit pas vide et que le numéro de téléphone soit un nombre à 10 chiffres.
+```sh
+# Chaîne complète : installation reproductible, tests React, compilation, tests API, JAR
+./mvnw clean verify
 
-* Lorsque l'utilisateur appuie sur l'une des icône `poubelle` le client de la ligne concernée est éffacé de la liste.
+# API seule
+./mvnw -P'!frontend' test
 
-* Lorsque le client appuie sur l'une des icônes `editer` un formulaire de saisie s'ouvre pour modifier les informations du client.
- -- Si l'utilisateur appuie sur l'icône `enregister`, les modifications sont enregistrées  sur condition que le champ réservé au nom ne soit pas vide et que le numéro de téléphone soit un nombre à 10 chiffres.
- -- Si l'utilisateur appuie sur l'icône `fermer`, le formulaire de modification se referme.
- 
-* Lorsque l'utilisateur saisit une entrée de `recherche`, seuls les clients dont le `nom` correspond à la recherche sont affichés. 
--- L'utilisateur peut changer le filtre de recherche pour chercher les clients par `prénom` ou `téléphone`.
+# Interface seule
+cd frontend
+npm ci
+npm test
+npm run build
+npm audit
+```
 
-* L'utilisateur peut ordonner le tableau par `id`, `nom`, `prénom` ou `numéro` de `téléphone`.
+Les tests API couvrent le CRUD, la collection vide, les champs facultatifs, les validations, les clients absents, la recherche et l’exposition limitée du point de santé. Les tests d’interface couvrent aussi les erreurs réseau et l’attente de confirmation du serveur avant d’afficher un succès.
 
-## Démonstration
+La CI exécute les tests API sur H2 puis PostgreSQL et construit le conteneur avant de vérifier ses routes HTTP.
 
-L'image `.gif` ci-dessous permet de faire une démo rapide de l'application.
+## API REST
 
-![alt text](./frontend/src/img/demo.gif "Project 3 Screen Shot Link-N-Park")
+| Méthode | Route | Comportement |
+| --- | --- | --- |
+| GET | `/api/clients` | Liste ordonnée par ID ; `200 []` si vide. |
+| GET | `/api/clients?name=exem` | Filtre sur le nom, sans distinction de casse. |
+| GET | `/api/clients/{id}` | Client ou `404`. |
+| POST | `/api/clients` | Création ; `201` avec en-tête `Location`. |
+| PUT | `/api/clients/{id}` | Modification ; `200`, ou `404` si absent. |
+| DELETE | `/api/clients/{id}` | Suppression ; `204`, ou `404` si absent. |
+| GET | `/actuator/health` | État de santé sans détails de configuration. |
 
+Corps de création / modification :
 
-## Licence
+```json
+{"lastname":"Exemple","firstname":"Camille","phone":"4185550101"}
+```
 
-[MIT](https://choosealicense.com/licenses/mit)
+Le nom est obligatoire et limité à 30 caractères. Le prénom est facultatif et limité à 30 caractères. Le téléphone est facultatif ; lorsqu’il est renseigné, il doit contenir exactement 10 chiffres. Une entrée invalide retourne `400` avec un objet `errors` par champ.
 
-## Contribution
+## Déploiement Docker
 
-N'hésitez pas à faire d'extraction (pull request).
+```sh
+docker build -t liste-clients .
+docker run --rm -p 8080:8080 liste-clients
+```
 
-## Questions et remarques
+Le Dockerfile compile et teste l’interface et l’API. L’image finale contient uniquement le JRE et le JAR et s’exécute sans privilèges root.
 
-Veuillez trouver les informations sur l'auteur et le contact ci-dessous.
+Pour un hébergeur compatible Docker / JVM :
 
-## Information sur l'auteur
+- Déployer ce dépôt avec le Dockerfile à sa racine.
+- Utiliser le profil `demo` pour une démonstration publique sur données fictives.
+- Configurer la sonde HTTP sur `/actuator/health`.
+- Laisser l’hébergeur définir `PORT`, ou utiliser le port 8080 par défaut.
+- Activer HTTPS au niveau de l’hébergeur.
 
-| <img align="left" width="150" height="auto" margin="10"  src="https://avatars3.githubusercontent.com/u/59809722?v=4"> |  Brice Boutet <br/>  Email : [boutetlb@gmail.com](boutetlb@gmail.com)<br/> GitHub : [BBoutet1](https://github.com/bboutet1)<br> Blog:  [https://bboutet1.github.io/](https://github.com/https://bboutet1.github.io/) |
-| -------- | ----------- |
+Le premier démarrage peut prendre quelques dizaines de secondes, notamment sur un hébergement à ressources limitées. Aucun lien de démonstration n’est annoncé avant validation du déploiement effectif.
 
+### PostgreSQL
+
+Créer une base vide dédiée, puis définir ces variables dans l’environnement de lancement ou dans le gestionnaire de secrets de l’hébergeur :
+
+| Variable | Valeur attendue |
+| --- | --- |
+| `SPRING_PROFILES_ACTIVE` | `postgres` |
+| `DB_JDBC_URL` | URL JDBC, par exemple `jdbc:postgresql://localhost:5432/clientsdb` ; utiliser les options TLS exigées par l’hébergeur. |
+| `DB_USER` | Utilisateur de la base. |
+| `DB_PASSWORD` | Mot de passe de la base. |
+
+Le profil PostgreSQL ne charge aucune donnée de démonstration. Hibernate crée / met à jour la table pour ce petit projet. Pour une exploitation réelle, prévoir des migrations de schéma versionnées.
+
+Cette application de portfolio ne gère ni authentification ni autorisations. Le profil PostgreSQL convient à un environnement de développement privé ; ne pas y exposer de données personnelles réelles sans ajouter les contrôles nécessaires.
+
+### Anciens accès
+
+Les anciens identifiants ont été retirés de la configuration active. S’ils sont encore valides, ils doivent être révoqués ou renouvelés : supprimer une valeur du dernier commit ne la retire pas de l’historique Git. Ne jamais inscrire de nouveaux secrets dans le dépôt.
+
+## Démonstration historique
+
+L’animation ci-dessous illustre la version initiale ; l’interface maintenue conserve les mêmes fonctions principales.
+
+![Démonstration de la version initiale](frontend/src/img/demo.gif)
+
+## Auteur et licence
+
+[Brice Boutet](https://github.com/BBoutet1) · [Profil GitHub](https://github.com/BBoutet1)
+
+Licence MIT, comme indiqué dans la version initiale du projet.
