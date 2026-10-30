@@ -1,83 +1,16 @@
-        /* Page title style */
-        
-        h1 {
-            background-image: url(../../img/business.jpg);
-            height: 150px;
-            font-size: 60px;
-            color: hotpink;
-        }
-        /* Search and new client form components wrapper */
-        
-        .search-wrapper {
-            display: flex;
-            justify-content: space-between;
-        }
-        /* bootstrap Buttons max height */
-        
-        .btn {
-            max-height: 38px!important;
-        }
-        /* Search form wrapper style */
-        
-        .search {
-            width: 150px;
-            margin-right: 0px!important;
-        }
-        /* Search form border */
-        
-        #search {
-            border-radius: 0 .25rem.25rem 0;
-        }
-        /* Filter wrapper */
-        
-        .filter {
-            max-width: 134px!important;
-            height: 38px
-        }
-        /* Select form */
-        
-        .custom-select {
-            width: 100%;
-            height: 50%;
-            padding: 0;
-            line-height: 1;
-            border-radius: 0 0 0 .25rem!important;
-            float: left;
-        }
-        
-        label {
-            width: 100%;
-            height: 50%;
-            float: left;
-            border-radius: .25rem 0 0 0!important;
-        }
-        
-        .form-control {
-            min-width: 110px!important;
-        }
-        
-        .fa-sort-down:hover {
-            color: hotpink;
-        }
-        
-        .fa-trash {
-            color: red
-        }
-        
-        .fa-trash,
-        .fa-save,
-        .fa-edit,
-        .fa-close {
-            font-size: 30px;
-            cursor: pointer
-        }
-        /* No clients rows message */
-        
-        .no-client {
-            width: 100%;
-            padding: 10px;
-            color: red;
-            text-align: center;
-            margin: auto;
-            font-size: 24px
-        }
+h1 {
+  background-image: linear-gradient(#ffffffd9, #ffffffd9), url(../../img/business.jpg);
+  min-height: 150px;
+  padding: 2.5rem 1rem;
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  color: #24364b;
+}
+.search-wrapper { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.form-actions { padding-bottom: 1.25rem; }
+.sort-button { border: 0; background: transparent; color: inherit; font-weight: bold; padding: 0; }
+.sort-button span { margin-left: .5rem; }
+.sort-button:focus-visible { outline: 2px solid #0056b3; outline-offset: 4px; }
+@media (max-width: 575px) {
+  .form-actions { padding-bottom: 0; }
+  .search-wrapper .search-fields { display: flex; flex-wrap: wrap; gap: .5rem; }
+}

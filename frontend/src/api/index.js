@@ -1,25 +1,10 @@
-import http from "../htt-common";
+import request from "../htt-common";
 
-class ClientDataService {
-    getAll() {
-        return http.get("/clients");
-    }
-
-    get(id) {
-        return http.get(`/clients/${id}`);
-    }
-
-    async create(data) {
-        return http.post("/clients", data);
-    }
-
-    update(id, data) {
-        return http.put(`/clients/${id}`, data);
-    }
-
-    delete(id) {
-        return http.delete(`/clients/${id}`);
-    }
-}
-
-export default new ClientDataService();
+const API = {
+  getAll: () => request("/clients"),
+  get: (id) => request(`/clients/${id}`),
+  create: (client) => request("/clients", { method: "POST", body: JSON.stringify(client) }),
+  update: (id, client) => request(`/clients/${id}`, { method: "PUT", body: JSON.stringify(client) }),
+  delete: (id) => request(`/clients/${id}`, { method: "DELETE" }),
+};
+export default API;
