@@ -5,7 +5,7 @@ RUN npm ci --no-fund --no-audit
 COPY frontend/ ./
 RUN npm test && npm run build
 
-FROM maven:3.9.16-eclipse-temurin-17 AS backend
+FROM maven:3.9-eclipse-temurin-26 AS backend
 WORKDIR /app
 COPY pom.xml ./
 RUN mvn -B --no-transfer-progress -P'!frontend' dependency:go-offline
