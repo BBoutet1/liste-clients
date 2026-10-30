@@ -67,6 +67,6 @@ jobs:
         run: |
           docker run -d --name clients -p 8080:8080 liste-clients:test
           trap 'docker logs clients; docker rm -f clients' EXIT
-          curl --fail --retry 30 --retry-connrefused --retry-delay 2 http://localhost:8080/actuator/health
+          curl --fail --silent --show-error --retry 30 --retry-all-errors --retry-delay 2 --retry-max-time 90 http://localhost:8080/actuator/health
           curl --fail http://localhost:8080/ | grep -q 'Liste de clients'
           curl --fail http://localhost:8080/api/clients | grep -q 'Exemple'
