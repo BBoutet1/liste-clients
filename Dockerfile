@@ -13,7 +13,7 @@ COPY src ./src
 COPY --from=frontend /app/frontend/dist ./frontend/dist
 RUN mvn -B --no-transfer-progress -P'!frontend' verify
 
-FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:22-jre-jammy
 WORKDIR /app
 RUN groupadd --gid 10001 app && useradd --uid 10001 --gid app --no-create-home app
 COPY --from=backend --chown=app:app /app/target/liste-clients.jar ./liste-clients.jar
